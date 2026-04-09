@@ -12,9 +12,9 @@
     "skipLibCheck": true,
     "noEmit": true,
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./frontend/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.vue"],
+  "include": ["frontend/**/*.ts", "frontend/**/*.vue"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

@@ -27,7 +27,7 @@ cd backend-py && source venv/bin/activate && python app.py  # http://localhost:3
 ## 项目结构
 
 ```
-├── src/                          # 前端
+├── frontend/                     # 前端
 │   ├── main.ts
 │   ├── App.vue
 │   └── components/

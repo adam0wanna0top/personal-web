@@ -10,7 +10,7 @@ vue3-starter/
 ├── tsconfig.json               # TypeScript 主配置
 ├── tsconfig.node.json          # TypeScript 针对 Node/Vite 的配置
 ├── node_modules/               # npm 安装的依赖包（不要手动改）
-├── src/
+├── frontend/
 │   ├── main.ts                 # JS/TS 入口：创建 Vue 应用
 │   ├── App.vue                 # 根组件（第一个 Vue 组件）
 │   ├── vite-env.d.ts           # 告诉 TS 什么是 .vue 文件
@@ -28,7 +28,7 @@ vue3-starter/
 
 ```html
 <div id="app"></div>                          <!-- Vue 挂载点 -->
-<script type="module" src="/src/main.ts"></script>  <!-- 加载 TS 入口 -->
+<script type="module" src="/frontend/main.ts"></script>  <!-- 加载 TS 入口 -->
 ```
 
 - `<div id="app">` 是一个空容器，Vue 会把整个应用渲染到里面
@@ -94,10 +94,10 @@ export default defineConfig({
     "lib": ["ES2020", "DOM"],     // 可用的类型库（DOM = 浏览器 API）
     "noEmit": true,               // 不输出文件（Vite 负责编译）
     "paths": {
-      "@/*": ["./src/*"]          // 路径别名：import xx from '@/components/Foo'
+      "@/*": ["./frontend/*"]          // 路径别名：import xx from '@/components/Foo'
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.vue"]  // 哪些文件参与 TS 检查
+  "include": ["frontend/**/*.ts", "frontend/**/*.vue"]  // 哪些文件参与 TS 检查
 }
 ```
 
@@ -105,7 +105,7 @@ export default defineConfig({
 
 `tsconfig.json` 通过 `references` 引用它，专门给 `vite.config.ts` 提供类型检查。
 
-### 6. `src/main.ts` — 应用入口
+### 6. `frontend/main.ts` — 应用入口
 
 ```ts
 import { createApp } from 'vue'   // 从 Vue 库导入 createApp 函数
@@ -116,7 +116,7 @@ createApp(App).mount('#app')       // 创建应用 → 挂载到 index.html 的 
 
 **执行流程：** `index.html` → 加载 `main.ts` → 创建 Vue 应用 → 渲染 `App.vue`
 
-### 7. `src/vite-env.d.ts` — 类型声明
+### 7. `frontend/vite-env.d.ts` — 类型声明
 
 ```ts
 declare module '*.vue' { ... }
@@ -271,7 +271,7 @@ npm run dev
 **新建组件的步骤：**
 
 ```
-1. 在 src/components/ 下创建 XxxView.vue
+1. 在 frontend/components/ 下创建 XxxView.vue
 2. 写好 <template> <script setup> <style scoped>
 3. 在需要用的父组件中：import XxxView from './components/XxxView.vue'
 4. 在父组件模板中直接写：<XxxView />

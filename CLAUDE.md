@@ -80,9 +80,27 @@ lark-cli docs +search --query "搜索关键词" --format pretty
 
 ## 知识库自动同步
 
-PR 合并到 master 后，GitHub Actions (`wiki-sync.yml`) 自动触发知识库同步：
-1. 检测变更文件 → 映射到对应文档
-2. Claude Code 分析变更 → 生成文档内容
-3. lark-cli 更新飞书知识库
+每次会话启动时，自动检测 master 分支是否有新变更并同步到飞书知识库：
 
-手动触发：GitHub Actions → Wiki Sync → Run workflow
+1. 读取 `.claude/wiki-last-sync.txt`（上次同步的 commit hash）
+2. 判断条件：`git rev-parse HEAD` == `git rev-parse origin/master` 且 != 上次同步的 hash
+3. 如果满足：
+   - `git diff <last-sync>..HEAD` 获取变更文件
+   - 根据映射关系只更新受影响的文档
+   - 在 09-变更记录 中追加变更摘要
+   - 更新 `.claude/wiki-last-sync.txt` 为当前 hash
+4. 如果不满足（如 checkout 到旧 commit），跳过同步
+
+**文件变更 → 文档映射：**
+- README.md → 01、02、06
+- frontend/ → 03
+- backend-ts/ → 04
+- backend-py/ → 05
+- GUIDE.md → 08
+- DEVELOPMENT.md → 07
+
+**更新命令：**
+```bash
+lark-cli docs +update --doc <doc_id> --mode overwrite --markdown "$(cat content.md)"
+lark-cli docs +update --doc TLfsd3EGlowgT7x2JqbcMokCnve --mode append --markdown "追加内容"
+```

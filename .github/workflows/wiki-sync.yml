@@ -12,6 +12,8 @@ jobs:
       contents: read
     env:
       ANTHROPIC_BASE_URL: ${{ secrets.ANTHROPIC_BASE_URL }}
+      LARK_APP_ID: ${{ secrets.LARK_APP_ID }}
+      LARK_APP_SECRET: ${{ secrets.LARK_APP_SECRET }}
     steps:
       - uses: actions/checkout@v4
         with:
@@ -29,8 +31,8 @@ jobs:
 
       - name: Configure lark-cli auth
         run: |
-          echo "${{ secrets.LARK_APP_SECRET }}" | lark-cli config init \
-            --app-id "${{ secrets.LARK_APP_ID }}" \
+          printf '%s' "$LARK_APP_SECRET" | lark-cli config init \
+            --app-id "$LARK_APP_ID" \
             --app-secret-stdin \
             --brand feishu
 

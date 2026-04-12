@@ -1,5 +1,3 @@
-# 06-API参考手册
-
 # API 参考手册
 两个后端（TS :3001 / Python :3002）实现完全相同的 API。
 ## Todo CRUD 接口
@@ -150,63 +148,9 @@
 
 ## 状态码汇总
 
-<lark-table rows="5" cols="3" header-row="true" column-widths="244,244,244">
-
-  <lark-tr>
-    <lark-td>
-      状态码
-    </lark-td>
-    <lark-td>
-      含义
-    </lark-td>
-    <lark-td>
-      触发场景
-    </lark-td>
-  </lark-tr>
-  <lark-tr>
-    <lark-td>
-      200
-    </lark-td>
-    <lark-td>
-      成功
-    </lark-td>
-    <lark-td>
-      GET / PUT 成功
-    </lark-td>
-  </lark-tr>
-  <lark-tr>
-    <lark-td>
-      201
-    </lark-td>
-    <lark-td>
-      创建成功
-    </lark-td>
-    <lark-td>
-      POST 创建新资源
-    </lark-td>
-  </lark-tr>
-  <lark-tr>
-    <lark-td>
-      400
-    </lark-td>
-    <lark-td>
-      请求错误
-    </lark-td>
-    <lark-td>
-      text 为空
-    </lark-td>
-  </lark-tr>
-  <lark-tr>
-    <lark-td>
-      404
-    </lark-td>
-    <lark-td>
-      未找到
-    </lark-td>
-    <lark-td>
-      id 不存在
-    </lark-td>
-  </lark-tr>
-</lark-table>
-
-
+| 状态码 | 含义 | 触发场景 |
+|--------|------|----------|
+| 200 | 成功 | GET / PUT 成功 |
+| 201 | 创建成功 | POST 创建新资源 |
+| 400 | 请求错误 | text 为空 |
+| 404 | 未找到 | id 不存在 |

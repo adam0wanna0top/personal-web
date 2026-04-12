@@ -1,5 +1,3 @@
-# 05-Python后端开发指南
-
 # Python 后端开发指南
 ## 技术栈
 - Flask 3.1 + flask-sock（WebSocket）+ psutil（系统监控）
@@ -100,75 +98,13 @@ def get_db():
 
 ### CRUD 函数
 
-<lark-table rows="6" cols="3" header-row="true" column-widths="244,244,244">
-
-  <lark-tr>
-    <lark-td>
-      函数
-    </lark-td>
-    <lark-td>
-      SQL
-    </lark-td>
-    <lark-td>
-      说明
-    </lark-td>
-  </lark-tr>
-  <lark-tr>
-    <lark-td>
-      `get_all()`
-    </lark-td>
-    <lark-td>
-      `SELECT * FROM todos ORDER BY id DESC`
-    </lark-td>
-    <lark-td>
-      查全部，转字典列表
-    </lark-td>
-  </lark-tr>
-  <lark-tr>
-    <lark-td>
-      `get_by_id(id)`
-    </lark-td>
-    <lark-td>
-      `SELECT * FROM todos WHERE id = ?`
-    </lark-td>
-    <lark-td>
-      查单个，不存在返回 None
-    </lark-td>
-  </lark-tr>
-  <lark-tr>
-    <lark-td>
-      `create(text, done)`
-    </lark-td>
-    <lark-td>
-      `INSERT INTO todos (text, done) VALUES (?, ?)`
-    </lark-td>
-    <lark-td>
-      新增
-    </lark-td>
-  </lark-tr>
-  <lark-tr>
-    <lark-td>
-      `update(id, text, done)`
-    </lark-td>
-    <lark-td>
-      `UPDATE todos SET text=?, done=? WHERE id=?`
-    </lark-td>
-    <lark-td>
-      更新，支持部分更新
-    </lark-td>
-  </lark-tr>
-  <lark-tr>
-    <lark-td>
-      `delete(id)`
-    </lark-td>
-    <lark-td>
-      `DELETE FROM todos WHERE id = ?`
-    </lark-td>
-    <lark-td>
-      删除
-    </lark-td>
-  </lark-tr>
-</lark-table>
+| 函数 | SQL | 说明 |
+|------|-----|------|
+| `get_all()` | `SELECT * FROM todos ORDER BY id DESC` | 查全部，转字典列表 |
+| `get_by_id(id)` | `SELECT * FROM todos WHERE id = ?` | 查单个，不存在返回 None |
+| `create(text, done)` | `INSERT INTO todos (text, done) VALUES (?, ?)` | 新增 |
+| `update(id, text, done)` | `UPDATE todos SET text=?, done=? WHERE id=?` | 更新，支持部分更新 |
+| `delete(id)` | `DELETE FROM todos WHERE id = ?` | 删除 |
 
 ### 类型转换辅助
 ```python
@@ -178,15 +114,6 @@ def row_to_dict(row):
         'text': row['text'],
         'done': bool(row['done']),   # 0/1 → False/True
     }
-
-```
-
-## 依赖清单
-```plaintext
-flask>=3.1
-flask-cors>=5.0
-flask-sock>=0.7
-psutil>=6.0
 
 ```
 
@@ -243,5 +170,3 @@ psutil>=7.0
 pytest>=8.0    # 测试框架
 
 ```
-
-
